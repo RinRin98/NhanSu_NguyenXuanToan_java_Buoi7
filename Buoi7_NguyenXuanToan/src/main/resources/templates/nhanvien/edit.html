@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+<head th:replace="~{layout :: head}">
+</head>
+<body>
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" th:fragment="content_right">
+    <div class="container">
+        <div class="booking p-5">
+            <div class="row g-5 align-items-center">
+                <div class="">
+                    <h1 class="text-white mb-4">Edit book</h1>
+
+                    <form th:action="@{/nhanviens/edit/{id}(id=${nhanvien.id})}" th:object="${nhanvien}" method="post">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <label for="id">Mã Nhân Viên: </label>
+                                    <input type="text" class="form-control bg-white" id="id" placeholder="id" th:field="*{id}">
+                                    <span class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <label for="hoten">Họ Tên: </label>
+                                    <input type="text" class="form-control bg-white" id="hoten" placeholder="hoten" th:field="*{hoten}">
+
+<!--                                    <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>-->
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <label for="phai">Giới Tính: </label>
+                                    <input type="text" class="form-control bg-white" id="phai" placeholder="phai" th:field="*{phai}">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <label for="noisinh">Nơi Sinh: </label>
+                                    <input type="text" class="form-control bg-white" id="noisinh" placeholder="noisinh" th:field="*{noisinh}">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <label for="luong"> Lương: </label>
+                                    <input type="text" class="form-control bg-white" id="luong" placeholder="luong" th:field="*{luong}">
+
+<!--                                    <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select bg-white" id="cate" th:field="*{phongban.id}">
+                                        <option value=""> Chọn Phòng Ban: </option>
+                                        <option th:each="phongban: ${phongbans}" th:value="${phongban.id}" th:text="${phongban.name}"></option>
+                                    </select>
+
+                                    <label for="cate">Phòng Ban</label>
+<!--                                    <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>-->
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+
+                                <input type="submit" class="btn btn btn-outline-light w-100 py-3" value="save">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

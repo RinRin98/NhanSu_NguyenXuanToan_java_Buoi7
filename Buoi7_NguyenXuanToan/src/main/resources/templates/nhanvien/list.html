@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        lang="en">
+<body>
+<div id="templatemo_content_right" th:fragment="content_right">
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                <h1 class="mb-5">Danh sách nhân viên</h1>
+                <form th:action="@{/nhanviens/search}" method="get">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control bg-white" id="hoten" name="input" placeholder="Nhập từ khóa để tìm:">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-light w-100 py-3" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <a class="breadcrumb justify-content-center" th:href="@{/nhanviens/add}">Thêm mới nhân viên</a>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Mã nhân viên</th>
+                                <th>Họ Tên</th>
+                                <th>Giới Tính</th>
+                                <th>Nơi Sinh</th>
+                                <th>Lương</th>
+                                <th>Phòng Ban</th>
+                                <th sec:authorize="hasAnyAuthority('ADMIN')">Action</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="nhanvien : ${nhanviens}">
+                                <td th:text="${nhanvien.id}"></td>
+                                <td th:text="${nhanvien.hoten}"></td>
+                                <td>
+                                    <img th:if="${nhanvien.phai == 'NU'}" src="/static/images/nu.jpg" alt="Nữ" style="width: 50px; height: 50px;" />
+                                    <img th:if="${nhanvien.phai == 'NAM'}" src="/static/images/nam.png" alt="Nam" style="width: 50px; height: 50px;" />
+                                </td>
+                                <td th:text="${nhanvien.noisinh}"></td>
+                                <td th:text="${nhanvien.luong}"></td>
+                                <td th:text="${nhanvien.phongban.name}"></td>
+                                <td sec:authorize="hasAnyAuthority('ADMIN')">
+                                    <a th:href="@{/nhanviens/edit/{id}(id=${nhanvien.id})}" class="text-info">Edit</a>
+                                    <a th:href="@{/nhanviens/delete/{id}(id=${nhanvien.id})}" onclick="deleteNhanVien(this); return false;" class="text-danger">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                                <a class="page-link" th:href="@{/nhanviens(page=${currentPage - 1})}">Previous</a>
+                            </li>
+                            <li class="page-item" th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+                                <a class="page-link" th:href="@{/nhanviens(page=${currentPage + 1})}">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    function deleteNhanVien(link){
+        if(confirm('Are you sure?')) {
+        $.ajax({
+            url: $(link).attr('href'),
+            type: 'DELETE',
+            success: result => {
+            if(!result.success){
+                alert(result.message);
+                } else{
+                    $(link).parent().parent().remove();
+                    }
+            }
+        });
+    }
+    }
+</script>
+</body>
+</html>
