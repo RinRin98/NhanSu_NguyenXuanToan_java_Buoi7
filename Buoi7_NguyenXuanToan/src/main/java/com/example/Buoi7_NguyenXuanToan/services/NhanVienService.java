@@ -40,13 +40,15 @@ public class NhanVienService {
     public void deleteNhanVien(String id){
         nhanVienRepository.deleteById(id);
     }
-    public List<nhanvien> search(String hoten) {
+    public Page<nhanvien> searchNhanVien(String hoten, Pageable pageable) {
         if (hoten.isBlank()) {
-            return nhanVienRepository.findAll(); // Trả về tất cả sản phẩm nếu không có tên được cung cấp
+            return nhanVienRepository.findAll(pageable); // Trả về tất cả nhân viên nếu không có tên được cung cấp
         }
-        return nhanVienRepository.findByhotenContaining(hoten);
+        return nhanVienRepository.findByHotenContaining(hoten, pageable);
     }
+
     public Page<nhanvien> getListOfEmployees(Pageable pageable) {
         return nhanVienRepository.findAll(pageable);
     }
+
 }

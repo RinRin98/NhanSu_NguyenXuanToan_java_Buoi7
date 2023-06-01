@@ -8,26 +8,25 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-
-                <h1 class="mb-5">Danh sách nhân viên</h1>
+                <h1 class="mb-5">Danh sách nhân viên - Nguyễn Xuân Toản - 2090694912</h1>
                 <form th:action="@{/nhanviens/search}" method="get">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control bg-white" id="hoten" name="input" placeholder="Nhập từ khóa để tìm:">
+                                <input type="text" class="form-control bg-white" id="hoten" name="input" placeholder="Nhập từ khóa để tìm">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-outline-light w-100 py-3" type="submit">Search</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </form>
-                <a class="breadcrumb justify-content-center" th:href="@{/nhanviens/add}">Thêm mới nhân viên</a>
+                <button sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-primary" onclick="location.href='/nhanviens/add'">Thêm mới nhân viên</button>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
                     <div class="">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered table-custom">
                             <thead>
                             <tr>
                                 <th>Mã nhân viên</th>
@@ -73,20 +72,21 @@
     </div>
 </div>
 <script th:inline="javascript">
-    function deleteNhanVien(link){
-        if(confirm('Are you sure?')) {
-        $.ajax({
-            url: $(link).attr('href'),
-            type: 'DELETE',
-            success: result => {
-            if(!result.success){
-                alert(result.message);
-                } else{
-                    $(link).parent().parent().remove();
+    function deleteNhanVien(link) {
+        if (confirm('Are you sure you want to delete this employee?')) {
+            $.ajax({
+                url: $(link).attr('href'),
+                type: 'DELETE',
+                success: result => {
+                    if (!result.success) {
+                        alert(result.message);
+                    } else {
+                        $(link).parent().parent().remove();
+                        alert('Employee deleted successfully.');
                     }
-            }
-        });
-    }
+                }
+            });
+        }
     }
 </script>
 </body>

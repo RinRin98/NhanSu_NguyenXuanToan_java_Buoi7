@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout.html :: layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/static/css/templatemo_style.css}" />
+</head>
 <body>
-
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" th:fragment="content_right">
-    <div class="container">
-        <div class="booking p-5">
+    <div id="templatemo_content_right">
+        <h1> SIGN UP <span>( Sign up account )</span></h1>
+        <div class="col-md-6">
             <div class="row g-5 align-items-center">
-                <div class="">
-                    <h1 class="text-white mb-4">Sign Up</h1>
-                    <form th:action="@{/register}" th:object="${user}" method="post">
+                <div class="row g-4 justify-content-center">
+                    <form th:action="@{/register}" th:object="${user}" method="post" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="fullname" class="form-label">Full Name: </label><span class="text-danger">*</span>
-                            <input type="text" class="form-control " id="fullname" th:field="*{fullname}">
-                            <span class="text-danger" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></span>
+                            <label for="fullname" class="form-label">Full Name:</label><span class="text-danger">*</span>
+                            <input type="text" class="form-control" id="fullname" th:field="*{fullname}" required>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email: </label><span class="text-danger">*</span>
-                            <input type="email" class="form-control " id="email" th:field="*{email}">
-                            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                            <label for="email" class="form-label">Email:</label><span class="text-danger">*</span>
+                            <input type="email" class="form-control" id="email" th:field="*{email}" required>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">User Name: </label><span class="text-danger">*</span>
-                            <input type="text" class="form-control " id="username" th:field="*{username}">
-                            <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                            <label for="username" class="form-label">User Name:</label><span class="text-danger">*</span>
+                            <input type="text" class="form-control" id="username" th:field="*{username}" required>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password: </label><span class="text-danger">*</span>
-                            <input type="password" class="form-control " id="password" th:field="*{password}">
-                            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                            <label for="password" class="form-label">Password:</label><span class="text-danger">*</span>
+                            <input type="password" class="form-control" id="password" th:field="*{password}" required>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-info"> Sign Up</button>
+                            <label></label>
+                            <label></label>
+                            <button type="submit" class="btn btn-info">Sign Up</button>
                         </div>
                     </form>
                 </div>
@@ -38,7 +44,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

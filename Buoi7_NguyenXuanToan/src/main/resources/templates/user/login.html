@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout.html :: layout}">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -7,14 +7,14 @@
 </head>
 <body>
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" th:fragment="content_right">
-    <div class="container">
-        <div class="booking p-5">
+    <div id="templatemo_content_right">
+        <h1> Login Account <span>( please login your account)</span></h1>
+        <div class="col-md-6">
             <div class="row g-5 align-items-center">
                 <div class="row g-4 justify-content-center">
-                    <h1 class="text-white mb-4">Login</h1>
-                    <form th:action="@{/login}"  method="post">
+                    <form th:action="@{/login}" method="post">
                         <fieldset>
-                            <legend> Please Login</legend>
+                            <legend>Please Login</legend>
                             <div th:if="${param.error}" class="alert alert-danger">
                                 Invalid username and password.
                             </div>
@@ -22,20 +22,20 @@
                                 You have been logged out.
                             </div>
                             <div class="mb-3">
-                                <label for="username" class="form-label">User Name: </label>
-                                <input type="text" required class="form-control" id="username" name="username" >
+                                <label for="username" class="form-label">User Name:</label>
+                                <input type="text" required class="form-control" id="username" name="username">
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">PassWord: </label>
-                                <input type="password" required class="form-control" id="password" name="password" >
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" required class="form-control" id="password" name="password">
                             </div>
                             <div class="mb-3">
-                                <input type="checkbox" id="remember-me" name="remember-me" >
-                                <label for="remember-me"> Remember Me </label>
+                                <input type="checkbox" id="remember-me" name="remember-me">
+                                <label for="remember-me">Remember Me</label>
                             </div>
                             <div class="d-grid gap-2 form-action">
-                                <button type="submit" class="btn btn-primary" > Login </button>
-                                <a class="text-primary text-center" href="/register" > Don't have account? Sign Up? </a>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                                <a class="text-primary text-center" href="/register">Don't have an account? Sign Up</a>
                             </div>
                         </fieldset>
                     </form>

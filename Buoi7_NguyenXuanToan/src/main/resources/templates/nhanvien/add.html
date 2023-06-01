@@ -1,79 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout.html :: layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/static/css/templatemo_style.css}" />
+</head>
 <body>
-
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" th:fragment="content_right">
-    <div class="container">
-        <div class="booking p-5">
+    <div id="templatemo_content_right">
+        <h1> Thêm nhân viên mới </h1>
+        <div class="col-md-6">
             <div class="row g-5 align-items-center">
-                <div class="">
-                    <h1 class="text-white mb-4">Thêm nhân viên mới</h1>
+                <div class="row g-4 justify-content-center">
                     <form th:action="@{/nhanviens/add}" th:object="${nhanvien}" method="post">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <label for="id">Mã Nhân Viên: </label>
-                                    <input type="text" class="form-control bg-white" id="id" placeholder="id" th:field="*{id}">
+                                <div class="mb-3">
+                                    <label for="id" class="form-label">Mã Nhân Viên:</label>
+                                    <input type="text" class="form-control" id="id" placeholder="Mã Nhân Viên" th:field="*{id}">
                                     <span class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <label for="hoten">Họ Tên: </label>
-                                    <input type="text" class="form-control bg-white" id="hoten" placeholder="hoten" th:field="*{hoten}">
+                                <div class="mb-3">
+                                    <label for="hoten" class="form-label">Họ Tên:</label>
+                                    <input type="text" class="form-control" id="hoten" placeholder="Họ Tên" th:field="*{hoten}">
                                     <span class="text-danger" th:if="${#fields.hasErrors('hoten')}" th:errors="*{hoten}"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <label for="phai">Giới Tính: </label>
-                                    <input type="text" class="form-control bg-white" id="phai" placeholder="phai" th:field="*{phai}">
-
+                                <div class="mb-3">
+                                    <label for="phai" class="form-label">Giới Tính:</label>
+                                    <input type="text" class="form-control" id="phai" placeholder="Giới Tính" th:field="*{phai}">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <label for="noisinh">Nơi Sinh: </label>
-                                    <input type="text" class="form-control bg-white" id="noisinh" placeholder="noisinh" th:field="*{noisinh}">
-
+                                <div class="mb-3">
+                                    <label for="noisinh" class="form-label">Nơi Sinh:</label>
+                                    <input type="text" class="form-control" id="noisinh" placeholder="Nơi Sinh" th:field="*{noisinh}">
                                     <span class="text-danger" th:if="${#fields.hasErrors('noisinh')}" th:errors="*{noisinh}"></span>
-
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <label for="luong"> Lương: </label>
-                                    <input type="text" class="form-control bg-white" id="luong" placeholder="luong" th:field="*{luong}">
-
+                                <div class="mb-3">
+                                    <label for="luong" class="form-label">Lương:</label>
+                                    <input type="text" class="form-control" id="luong" placeholder="Lương" th:field="*{luong}">
                                     <span class="text-danger" th:if="${#fields.hasErrors('luong')}" th:errors="*{luong}"></span>
-
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <select class="form-select bg-white" id="cate" th:field="*{phongban.id}">
-                                        <option value=""> Chọn Phòng Ban: </option>
+                                <div class="mb-3">
+                                    <label for="phongban" class="form-label">Phòng Ban:</label>
+                                    <select class="form-select" id="phongban" th:field="*{phongban.id}">
+                                        <option value="">Chọn Phòng Ban</option>
                                         <option th:each="phongban: ${phongbans}" th:value="${phongban.id}" th:text="${phongban.name}"></option>
                                     </select>
-
-                                    <label for="cate">Phòng Ban</label>
                                     <span class="text-danger" th:if="${#fields.hasErrors('phongban')}" th:errors="*{phongban}"></span>
-
                                 </div>
                             </div>
-
                             <div class="col-12">
-
-                                <input type="submit" class="btn btn btn-outline-light w-100 py-3" value="save">
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

@@ -74,6 +74,14 @@ img {
 	text-decoration: none;
 }
 
+.col-md-6 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%
+    }
+
 .detail_button a{
 	clear: both;
 	text-align: center;
@@ -134,10 +142,10 @@ img {
 #templatemo_header {
 	clear: both;
 	width: 960px;
-	height: 285px;
+	height: 300px;
 	padding: 0;
 	margin: 0;
-	background: url(../images/templatemo_header_bg.jpg) no-repeat;
+	background: url(../images/imageedit_2_5068603988.jpg) no-repeat;
 }
 
 #templatemo_header a,a:hover {
@@ -146,10 +154,9 @@ img {
 
 #templatemo_header #templatemo_special_offers {
 	float: left;
-	font-size: 14px;	
-	margin-top: 95px;
-	margin-left: 490px;
-	width: 180px;
+	font-size: 14px;
+	margin-top: 130px;
+	margin-left: 100px;
 }
 
 #templatemo_special_offers a {

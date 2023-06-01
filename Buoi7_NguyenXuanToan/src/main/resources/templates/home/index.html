@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout.html :: layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/static/css/templatemo_style.css}" />
+</head>
 <body>
-<div class="container"  th:fragment="content_right">
-    <nav class="navbar navbar-light bg-light"></nav>
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            TRANG CHỦ ỨNG DỤNG NHÂN SỰ
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" th:fragment="content_right">
+    <div id="templatemo_content_right">
+        <h1> TRANG CHỦ ỨNG DỤNG QUẢN LÝ NHÂN SỰ</h1>
 
-        </a>
     </div>
 </div>
 </body>

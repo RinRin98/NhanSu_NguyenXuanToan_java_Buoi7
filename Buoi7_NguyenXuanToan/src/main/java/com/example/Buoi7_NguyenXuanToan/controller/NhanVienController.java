@@ -100,10 +100,16 @@ public class NhanVienController {
     }
 
     @GetMapping("/search")
-    public String searchNhanVien(@RequestParam("input") String input, Model model) {
-        List<nhanvien> searchResults = nhanVienService.search(input);
-        model.addAttribute("nhanviens", searchResults);
+    public String searchNhanVien(@RequestParam("input") String input, @RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 5; // Số lượng nhân viên trên mỗi trang
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<nhanvien> searchResultsPage = nhanVienService.searchNhanVien(input, pageable);
+
+        model.addAttribute("nhanviens", searchResultsPage.getContent());
         model.addAttribute("hoten", "nhanvien " + input);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", searchResultsPage.getTotalPages());
+
         return "nhanvien/list";
     }
 
